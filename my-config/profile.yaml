@@ -1,0 +1,11 @@
+# Heavy-routing Fallback personal profile.
+# All overrides are opt-in; DNS/IPv6/TUN are intentionally untouched.
+base: cfg/yaml/Custom_Clash_Full_Fallback.yaml
+output: my-config/build/Custom_Clash_Full_Fallback_Neo.yaml
+rule_files:
+  - path: my-config/rules/direct.list
+    target: "🎯 全球直连"
+  - path: my-config/rules/proxy.list
+    target: "🚀 故障转移"
+  - path: my-config/rules/reject.list
+    target: REJECT
