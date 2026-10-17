@@ -1,0 +1,54 @@
+name: Sync Aethersailor Upstream
+
+on:
+  schedule:
+    # 08:20 Asia/Shanghai (00:20 UTC)
+    - cron: '20 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: neo-openclash-upstream-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout controller
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Configure identity
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+      - name: Fetch upstream and branches
+        run: |
+          git remote add upstream https://github.com/Aethersailor/Custom_OpenClash_Rules.git
+          git fetch upstream main
+          git fetch origin upstream-sync custom
+
+      - name: Fast-forward clean upstream snapshot
+        run: |
+          git switch -C upstream-sync origin/upstream-sync
+          git merge --ff-only upstream/main
+          git push origin HEAD:upstream-sync
+
+      - name: Merge upstream into personal custom branch
+        run: |
+          git switch -C custom origin/custom
+          git merge --no-edit upstream/main
+          git diff --check
+          git push origin HEAD:custom
+
+      - name: Summary
+        if: success()
+        run: |
+          echo 'Upstream sync and custom merge succeeded.' >> "$GITHUB_STEP_SUMMARY"
