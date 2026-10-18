@@ -35,11 +35,20 @@ jobs:
           git fetch upstream main
           git fetch origin upstream-sync custom
 
-      - name: Fast-forward clean upstream snapshot
+      - name: Update dedicated upstream tracking branch
         run: |
-          git switch -C upstream-sync origin/upstream-sync
-          git merge --ff-only upstream/main
-          git push origin HEAD:upstream-sync
+          old_sha="$(git rev-parse refs/remotes/origin/upstream-sync)"
+          new_sha="$(git rev-parse refs/remotes/upstream/main)"
+
+          if [ "$old_sha" = "$new_sha" ]; then
+            echo "Tracking branch already current"
+          elif git merge-base --is-ancestor "$old_sha" "$new_sha"; then
+            echo "Fast-forwarding upstream-sync"
+            git push origin "$new_sha:refs/heads/upstream-sync"
+          else
+            echo "::warning::Upstream history diverged. Repointing only the dedicated upstream-sync mirror, using a SHA lease."
+            git push --force-with-lease="refs/heads/upstream-sync:$old_sha"               origin "$new_sha:refs/heads/upstream-sync"
+          fi
 
       - name: Merge upstream into personal custom branch
         run: |
