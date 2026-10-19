@@ -2,7 +2,7 @@ name: Sync Aethersailor Upstream
 
 on:
   schedule:
-    # 08:20 Asia/Shanghai (00:20 UTC)
+    # Beijing 08:20 (UTC 00:20); GitHub may delay scheduled runs
     - cron: '20 0 * * *'
   workflow_dispatch:
 
@@ -35,29 +35,38 @@ jobs:
           git fetch upstream main
           git fetch origin upstream-sync custom
 
-      - name: Update dedicated upstream tracking branch
+      - name: Update upstream content without GitHub workflows
         run: |
-          old_sha="$(git rev-parse refs/remotes/origin/upstream-sync)"
-          new_sha="$(git rev-parse refs/remotes/upstream/main)"
+          # A regular GITHUB_TOKEN cannot push upstream changes to
+          # .github/workflows/ without workflow-specific permission.
+          # Maintain a synthetic tracking branch containing upstream
+          # files outside that directory. Never force-push the branch.
+          git switch -C upstream-sync origin/upstream-sync
+          git restore --source=upstream/main --staged --worktree -- . ':(exclude).github/workflows/**'
 
-          if [ "$old_sha" = "$new_sha" ]; then
-            echo "Tracking branch already current"
-          elif git merge-base --is-ancestor "$old_sha" "$new_sha"; then
-            echo "Fast-forwarding upstream-sync"
-            git push origin "$new_sha:refs/heads/upstream-sync"
-          else
-            echo "::warning::Upstream history diverged. Repointing only the dedicated upstream-sync mirror, using a SHA lease."
-            git push --force-with-lease="refs/heads/upstream-sync:$old_sha"               origin "$new_sha:refs/heads/upstream-sync"
+          if [ -n "$(git diff --cached --name-only -- .github/workflows)" ]; then
+            echo "::error::Refusing to modify GitHub Actions workflow files"
+            exit 1
           fi
 
-      - name: Merge upstream into personal custom branch
+          if git diff --cached --quiet; then
+            echo "Non-workflow upstream content already current"
+          else
+            upstream_sha="$(git rev-parse --short=12 upstream/main)"
+            git diff --cached --check
+            git commit -m "chore(sync): import upstream content $upstream_sha (excluding workflows)"
+            git push origin HEAD:upstream-sync
+          fi
+
+      - name: Merge updated tracking content into custom
         run: |
           git switch -C custom origin/custom
-          git merge --no-edit upstream/main
+          git merge --no-edit upstream-sync
           git diff --check
           git push origin HEAD:custom
 
       - name: Summary
         if: success()
         run: |
-          echo 'Upstream sync and custom merge succeeded.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Upstream non-workflow files synchronized and merged into custom.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Upstream .github/workflows/ files are intentionally excluded.' >> "$GITHUB_STEP_SUMMARY"
