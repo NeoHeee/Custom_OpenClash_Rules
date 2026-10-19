@@ -2,12 +2,23 @@ name: Validate Personal OpenClash YAML
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Sync Aethersailor Upstream
+    types:
+      - completed
 
 permissions:
   contents: read
 
+concurrency:
+  group: validate-personal-openclash
+  cancel-in-progress: false
+
 jobs:
   validate:
+    # Do not validate a stale branch after an unsuccessful upstream sync.
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout personal custom branch
