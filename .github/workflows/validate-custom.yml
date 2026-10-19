@@ -1,0 +1,62 @@
+name: Validate Personal OpenClash YAML
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout personal custom branch
+        uses: actions/checkout@v5
+        with:
+          ref: custom
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install YAML parser
+        run: python -m pip install -r my-config/requirements.txt
+
+      - name: Check upstream and personal rule compatibility
+        run: python my-config/scripts/build.py --check
+
+      - name: Generate isolated test configuration
+        run: python my-config/scripts/build.py
+
+      - name: Verify base settings preserved
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import yaml
+
+          base = yaml.safe_load(Path("cfg/yaml/Custom_Clash_Full_Fallback.yaml").read_text(encoding="utf-8"))
+          generated = yaml.safe_load(Path("my-config/build/Custom_Clash_Full_Fallback_Neo.yaml").read_text(encoding="utf-8"))
+
+          for key in ("proxy-groups", "proxy-providers", "rule-providers", "dns", "ipv6", "tun"):
+              if base.get(key) != generated.get(key):
+                  raise SystemExit(f"Configuration changed unexpectedly: {key}")
+
+          upstream_rules = base["rules"]
+          personal_rules = generated["rules"]
+          assert personal_rules[:2] == upstream_rules[:2], "Private/LAN precedence changed"
+          assert personal_rules[-(len(upstream_rules) - 2):] == upstream_rules[2:], "Upstream rule ordering changed"
+
+          if generated.get("proxy-providers", {}).get("provider1", {}).get("url") == "url":
+              print("Expected: provider1 URL is a placeholder; YAML is NOT ready for deployment.")
+
+          print("PASS: generated YAML parsed; upstream proxy groups, providers, DNS/IPv6/TUN and rule order preserved.")
+          PY
+
+      - name: Test summary
+        if: success()
+        run: |
+          echo '### Personal OpenClash build validation passed' >> "$GITHUB_STEP_SUMMARY"
+          echo 'This is a dry-run with placeholder provider URL. No router configuration was changed.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No generated YAML was committed or published.' >> "$GITHUB_STEP_SUMMARY"
