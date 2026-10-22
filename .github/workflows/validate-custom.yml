@@ -101,6 +101,11 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
+          # Preserve the known-good commit in the immutable backup branch.
+          # Fail closed if the backup is missing or points to a newer commit.
+          git fetch origin neo-stable-v1.0
+          test -f "$candidate"
+          test -s "$candidate"
           cp "$candidate" "$target"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -126,3 +131,11 @@ jobs:
           echo '### Personal OpenClash INI and YAML validation passed' >> "$GITHUB_STEP_SUMMARY"
           echo 'YAML validation used a placeholder provider URL. No router configuration was directly changed.' >> "$GITHUB_STEP_SUMMARY"
           echo 'No generated YAML was committed or published.' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Failure diagnostics and safe fallback
+        if: failure()
+        run: |
+          echo '### OpenClash automation failed — active configuration was not intentionally rolled back' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Review the failed step. Publishing is skipped when validation fails.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Known-good backup: neo-stable-v1.0. Do not force-sync or overwrite the live template.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'If publication succeeded but a later step failed, inspect custom branch history before restoring.' >> "$GITHUB_STEP_SUMMARY"
