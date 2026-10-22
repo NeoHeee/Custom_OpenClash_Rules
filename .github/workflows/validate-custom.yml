@@ -123,6 +123,6 @@ jobs:
       - name: Test summary
         if: success()
         run: |
-          echo '### Personal OpenClash build validation passed' >> "$GITHUB_STEP_SUMMARY"
-          echo 'This is a dry-run with placeholder provider URL. No router configuration was changed.' >> "$GITHUB_STEP_SUMMARY"
+          echo '### Personal OpenClash INI and YAML validation passed' >> "$GITHUB_STEP_SUMMARY"
+          echo 'YAML validation used a placeholder provider URL. No router configuration was directly changed.' >> "$GITHUB_STEP_SUMMARY"
           echo 'No generated YAML was committed or published.' >> "$GITHUB_STEP_SUMMARY"
