@@ -35,6 +35,28 @@ jobs:
       - name: Install YAML parser
         run: python -m pip install -r my-config/requirements.txt
 
+      - name: Generate updated Neo INI candidate (no promotion)
+        run: python my-config/scripts/generate_neo_ini.py
+
+      - name: Check candidate against active Neo INI
+        id: neo-drift
+        continue-on-error: true
+        run: python my-config/scripts/generate_neo_ini.py --check
+
+      - name: Archive review-only Neo candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: neo-ini-candidate
+          path: my-config/build/Neo_Clash_Full_Fallback.candidate.ini
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Report candidate drift
+        if: steps.neo-drift.outcome == 'failure'
+        run: |
+          echo '### Attention: Neo INI candidate differs from active template' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Review neo-ini-candidate artifact and do not promote without testing.' >> "$GITHUB_STEP_SUMMARY"
+
       - name: Validate personal subscription conversion INI
         run: python my-config/scripts/validate_ini.py
 
