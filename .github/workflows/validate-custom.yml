@@ -44,7 +44,7 @@ jobs:
         run: python my-config/scripts/generate_neo_ini.py --check
 
       - name: Archive review-only Neo candidate
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: neo-ini-candidate
           path: my-config/build/Neo_Clash_Full_Fallback.candidate.ini
