@@ -35,6 +35,9 @@ jobs:
       - name: Install YAML parser
         run: python -m pip install -r my-config/requirements.txt
 
+      - name: Validate personal subscription conversion INI
+        run: python my-config/scripts/validate_ini.py
+
       - name: Check upstream and personal rule compatibility
         run: python my-config/scripts/build.py --check
 
