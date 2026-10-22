@@ -70,3 +70,10 @@ jobs:
         run: |
           echo 'Upstream non-workflow files synchronized and merged into custom.' >> "$GITHUB_STEP_SUMMARY"
           echo 'Upstream .github/workflows/ files are intentionally excluded.' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Failure notification summary
+        if: failure()
+        run: |
+          echo '### Upstream sync failed; automatic validation/publication will be skipped' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Check merge conflicts, permissions, or upstream availability.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Do not force-push custom or upstream-sync. Existing Neo template remains the fallback.' >> "$GITHUB_STEP_SUMMARY"
