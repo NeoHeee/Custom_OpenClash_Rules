@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[2]
 BASE = ROOT / "cfg/Custom_Clash_Full_Fallback.ini"
 ACTIVE = ROOT / "cfg/Neo_Clash_Full_Fallback.ini"
 OUTPUT = ROOT / "my-config/build/Neo_Clash_Full_Fallback.candidate.ini"
-PREFERRED = ["🇯🇵 日本节点", "🇸🇬 新加坡节点", "🇺🇸 美国节点", "🇰🇷 韩国节点", "🇭🇰 香港节点"]
+PREFERRED = ["🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇺🇸 美国节点", "🇰🇷 韩国节点", "🇭🇰 香港节点"]
 EXCEPTIONS = {"📺 ABEMA", "🎮 DMM", "📺 Bahamut"}
 
 def transform(line):
@@ -37,7 +37,7 @@ def main():
     lines = source.splitlines(keepends=True)
     header = (
         "; NeoHeee personal OpenClash conversion template\n"
-        "; Region group priority (where all five exist): JP > SG > US > KR > HK.\n"
+        "; Region group priority (where all five exist): SG > JP > US > KR > HK.\n"
         "; Preserve direct-first groups and service-specific ABEMA/DMM/Bahamut priorities.\n"
         "; Rebased from cfg/Custom_Clash_Full_Fallback.ini; upstream assets unchanged.\n\n"
     )

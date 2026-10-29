@@ -11,7 +11,7 @@ parser.add_argument("--candidate", action="store_true", help="Validate generated
 args = parser.parse_args()
 selected = "my-config/build/Neo_Clash_Full_Fallback.candidate.ini" if args.candidate else "cfg/Neo_Clash_Full_Fallback.ini"
 personal = (root / selected).read_text(encoding="utf-8")
-preferred = ["🇯🇵 日本节点", "🇸🇬 新加坡节点", "🇺🇸 美国节点", "🇰🇷 韩国节点", "🇭🇰 香港节点"]
+preferred = ["🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇺🇸 美国节点", "🇰🇷 韩国节点", "🇭🇰 香港节点"]
 exceptions = {"📺 ABEMA", "🎮 DMM", "📺 Bahamut"}
 
 def extract(text):
