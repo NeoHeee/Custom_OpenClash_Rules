@@ -1,7 +1,7 @@
 # Generated from rule/Custom_Direct.list
 # REPO: https://github.com/Aethersailor/Custom_OpenClash_Rules
 # SOURCE: https://github.com/Aethersailor/Custom_OpenClash_Rules/blob/main/rule/Custom_Direct.list
-# TOTAL: 1056
+# TOTAL: 1067
 
 payload:
   - '+.00333118.com'
@@ -61,6 +61,7 @@ payload:
   - '+.77shuku.org'
   - '+.7sef.com'
   - '+.800686.xyz'
+  - '+.847ds.com'
   - '+.85sc.com'
   - '+.86656.net'
   - '+.888lm02.com'
@@ -308,6 +309,9 @@ payload:
   - '+.fenno.ai'
   - '+.fffff.games'
   - '+.ffhome.com'
+  - '+.fgaiservice.com'
+  - '+.fileh.xyz'
+  - '+.filej.xyz'
   - '+.fjdejing.com'
   - '+.fjpit.com'
   - '+.flingtrainer.com'
@@ -554,6 +558,7 @@ payload:
   - '+.kgithub.com'
   - '+.kit327.com'
   - '+.kiwiot.com'
+  - '+.kke.com.hk'
   - '+.kldai.vip'
   - '+.kmeila.com'
   - '+.koebpmhcce.com'
@@ -692,6 +697,7 @@ payload:
   - '+.paijitang.com'
   - '+.pailedi.com'
   - '+.panjue.com'
+  - '+.paojiaoyun.com'
   - '+.paperang.com'
   - '+.passnat.com'
   - '+.pcwatch.com'
@@ -821,6 +827,7 @@ payload:
   - '+.suu-fun.com'
   - '+.suyur.com'
   - '+.svyun.com'
+  - '+.sxjiabeide.com'
   - '+.sxlljm.com'
   - '+.sxstczx.com'
   - '+.sy1.top'
@@ -868,6 +875,8 @@ payload:
   - '+.tongkask.com'
   - '+.tongxids.com'
   - '+.tool56.com'
+  - '+.topkee.com'
+  - '+.topkee.top'
   - '+.topwd.top'
   - '+.touchgal.ink'
   - '+.touchgaloss.com'
@@ -998,6 +1007,7 @@ payload:
   - '+.ycjintou.com'
   - '+.ycyct.com'
   - '+.ydayc.com'
+  - '+.yeguodj.com'
   - '+.yhxjkj.top'
   - '+.yi-ll.com'
   - '+.yibanbianji.com'
@@ -1005,6 +1015,7 @@ payload:
   - '+.yingshi.dog'
   - '+.yiso.fun'
   - '+.yixc.com'
+  - '+.yixlab.com'
   - '+.yldw.net'
   - '+.ymwfy.com'
   - '+.ymzec.com'
