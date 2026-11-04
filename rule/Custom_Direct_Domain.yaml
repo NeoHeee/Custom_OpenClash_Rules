@@ -1,7 +1,7 @@
 # Generated from rule/Custom_Direct.list
 # REPO: https://github.com/Aethersailor/Custom_OpenClash_Rules
 # SOURCE: https://github.com/Aethersailor/Custom_OpenClash_Rules/blob/main/rule/Custom_Direct.list
-# TOTAL: 1095
+# TOTAL: 1101
 
 payload:
   - '+.00333118.com'
@@ -131,6 +131,7 @@ payload:
   - '+.apm-log-upload-os.hoyoverse.com'
   - '+.appracle.com'
   - '+.aqtwwx.net'
+  - '+.arena-cn.com'
   - '+.argotunnel.com'
   - '+.armvm.com'
   - '+.asgardion.space'
@@ -199,6 +200,7 @@ payload:
   - '+.cgicop.com'
   - '+.changjirb.com'
   - '+.changzhi.top'
+  - '+.chatlabs.net'
   - '+.chaxunjiao.com'
   - '+.chaz.fun'
   - '+.checkip.dyndns.org'
@@ -337,6 +339,7 @@ payload:
   - '+.fsytss.com'
   - '+.ft07.com'
   - '+.ftqq.com'
+  - '+.ftsup.com'
   - '+.functorz.com'
   - '+.funlinkads.com'
   - '+.funmob.top'
@@ -631,6 +634,7 @@ payload:
   - '+.medtechshare.com'
   - '+.meetkb.com'
   - '+.meijian.com'
+  - '+.meimuyingxiao.com'
   - '+.meishiffx.online'
   - '+.meiyitou.top'
   - '+.melecode.com'
@@ -752,6 +756,7 @@ payload:
   - '+.pvz1.com'
   - '+.pwithe.com'
   - '+.pziqna.net'
+  - '+.qdgsny.com'
   - '+.qianfan.app'
   - '+.qiankunshopping.com'
   - '+.qianuni.com'
@@ -838,6 +843,7 @@ payload:
   - '+.spst1.com'
   - '+.sptv.ii00.cc'
   - '+.ssjj2.com'
+  - '+.stargame.group'
   - '+.starlink.uno'
   - '+.startssl.com'
   - '+.staticmeow.com'
