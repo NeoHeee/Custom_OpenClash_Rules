@@ -44,10 +44,10 @@ def main():
     source = BASE.read_text(encoding="utf-8")
     lines = source.splitlines(keepends=True)
     header = (
-        "; NeoHeee personal OpenClash conversion template\n"
-        "; Region group priority (where all five exist): SG > JP > US > KR > HK.\n"
-        "; Preserve direct-first groups and service-specific ABEMA/DMM/Bahamut priorities.\n"
-        "; Rebased from cfg/Custom_Clash_Full_Fallback.ini; upstream assets unchanged.\n\n"
+        "; NeoHeee 个人专属 OpenClash 订阅转换模板\n"
+        "; 节点地区优先级（五个地区均存在时）：新加坡 > 日本 > 美国 > 韩国 > 香港\n"
+        "; 特殊策略：保留直连优先分组及 ABEMA、DMM、Bahamut 等服务的原有地区优先级\n"
+        "; 上游同步：基于 cfg/Custom_Clash_Full_Fallback.ini 生成，保持上游规则资源引用不变\n\n"
     )
     body = "".join(transform(line.rstrip("\r\n")) + line[len(line.rstrip("\r\n")):] for line in lines)
     # Timestamp only changes when template content changes, avoiding needless daily commits.
@@ -58,8 +58,8 @@ def main():
         stamp = match.group(1) if match else datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M")
     else:
         stamp = datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M")
-    result = header.replace("; NeoHeee personal OpenClash conversion template\n",
-                            "; NeoHeee personal OpenClash conversion template\n" +
+    result = header.replace("; NeoHeee 个人专属 OpenClash 订阅转换模板\n",
+                            "; NeoHeee 个人专属 OpenClash 订阅转换模板\n" +
                             TIMESTAMP_PREFIX + stamp + "\n", 1) + body
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(result, encoding="utf-8")
