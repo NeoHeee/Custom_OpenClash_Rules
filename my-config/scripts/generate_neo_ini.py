@@ -49,7 +49,7 @@ def main():
         "; Preserve direct-first groups and service-specific ABEMA/DMM/Bahamut priorities.\n"
         "; Rebased from cfg/Custom_Clash_Full_Fallback.ini; upstream assets unchanged.\n\n"
     )
-    body = "".join(transform(line.rstrip("\\r\\n")) + line[len(line.rstrip("\\r\\n")):] for line in lines)
+    body = "".join(transform(line.rstrip("\r\n")) + line[len(line.rstrip("\r\n")):] for line in lines)
     # Timestamp only changes when template content changes, avoiding needless daily commits.
     unmarked = header + body
     previous = ACTIVE.read_text(encoding="utf-8") if ACTIVE.exists() else ""
@@ -58,9 +58,9 @@ def main():
         stamp = match.group(1) if match else datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M")
     else:
         stamp = datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M")
-    result = header.replace("; NeoHeee personal OpenClash conversion template\\n",
-                            "; NeoHeee personal OpenClash conversion template\\n" +
-                            TIMESTAMP_PREFIX + stamp + "\\n", 1) + body
+    result = header.replace("; NeoHeee personal OpenClash conversion template\n",
+                            "; NeoHeee personal OpenClash conversion template\n" +
+                            TIMESTAMP_PREFIX + stamp + "\n", 1) + body
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(result, encoding="utf-8")
     if args.check:
