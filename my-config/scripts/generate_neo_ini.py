@@ -2,6 +2,9 @@
 """Build a candidate Neo INI from the synced base without changing the live template."""
 from pathlib import Path
 import argparse
+import re
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[2]
 BASE = ROOT / "cfg/Custom_Clash_Full_Fallback.ini"
@@ -9,6 +12,11 @@ ACTIVE = ROOT / "cfg/Neo_Clash_Full_Fallback.ini"
 OUTPUT = ROOT / "my-config/build/Neo_Clash_Full_Fallback.candidate.ini"
 PREFERRED = ["🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇺🇸 美国节点", "🇰🇷 韩国节点", "🇭🇰 香港节点"]
 EXCEPTIONS = {"📺 ABEMA", "🎮 DMM", "📺 Bahamut"}
+TIMESTAMP_PREFIX = "; 最后更新（北京时间）："
+
+
+def strip_timestamp(text):
+    return "".join(line for line in text.splitlines(keepends=True) if not line.startswith(TIMESTAMP_PREFIX))
 
 def transform(line):
     if not line.startswith("custom_proxy_group="):
@@ -41,7 +49,18 @@ def main():
         "; Preserve direct-first groups and service-specific ABEMA/DMM/Bahamut priorities.\n"
         "; Rebased from cfg/Custom_Clash_Full_Fallback.ini; upstream assets unchanged.\n\n"
     )
-    result = header + "".join(transform(line.rstrip("\r\n")) + line[len(line.rstrip("\r\n")):] for line in lines)
+    body = "".join(transform(line.rstrip("\\r\\n")) + line[len(line.rstrip("\\r\\n")):] for line in lines)
+    # Timestamp only changes when template content changes, avoiding needless daily commits.
+    unmarked = header + body
+    previous = ACTIVE.read_text(encoding="utf-8") if ACTIVE.exists() else ""
+    if previous and strip_timestamp(previous) == unmarked:
+        match = re.search(r"^" + re.escape(TIMESTAMP_PREFIX) + r"(.+)$", previous, flags=re.MULTILINE)
+        stamp = match.group(1) if match else datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M")
+    else:
+        stamp = datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M")
+    result = header.replace("; NeoHeee personal OpenClash conversion template\\n",
+                            "; NeoHeee personal OpenClash conversion template\\n" +
+                            TIMESTAMP_PREFIX + stamp + "\\n", 1) + body
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(result, encoding="utf-8")
     if args.check:
