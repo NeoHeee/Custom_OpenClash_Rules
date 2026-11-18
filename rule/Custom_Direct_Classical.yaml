@@ -1,7 +1,7 @@
 # Generated from rule/Custom_Direct.list
 # REPO: https://github.com/Aethersailor/Custom_OpenClash_Rules
 # SOURCE: https://github.com/Aethersailor/Custom_OpenClash_Rules/blob/main/rule/Custom_Direct.list
-# TOTAL: 1266
+# TOTAL: 1273
 
 payload:
   - DOMAIN-KEYWORD,m-team
@@ -475,6 +475,7 @@ payload:
   - DOMAIN-SUFFIX,gxcould.com
   - DOMAIN-SUFFIX,gxnnjidingkeji.top
   - DOMAIN-SUFFIX,gxnnxsqy.top
+  - DOMAIN-SUFFIX,gxqmeiwujun.com
   - DOMAIN-SUFFIX,gxrke1715.com
   - DOMAIN-SUFFIX,gzjkoa.com
   - DOMAIN-SUFFIX,gzybao.com
@@ -596,6 +597,7 @@ payload:
   - DOMAIN-SUFFIX,ipshu.com
   - DOMAIN-SUFFIX,iq.com
   - DOMAIN-SUFFIX,iquantumad.com
+  - DOMAIN-SUFFIX,isbestgame.com
   - DOMAIN-SUFFIX,istoreos.com
   - DOMAIN-SUFFIX,itptg.com
   - DOMAIN-SUFFIX,itui.cc
@@ -733,6 +735,7 @@ payload:
   - DOMAIN-SUFFIX,metrix.bar
   - DOMAIN-SUFFIX,mfdqsc.com
   - DOMAIN-SUFFIX,mfosunhani.com
+  - DOMAIN-SUFFIX,mfpt8g.com
   - DOMAIN-SUFFIX,miaona.app
   - DOMAIN-SUFFIX,miaotixing.com
   - DOMAIN-SUFFIX,micu.hk
@@ -742,11 +745,13 @@ payload:
   - DOMAIN-SUFFIX,mifeng.plus
   - DOMAIN-SUFFIX,mifon.com
   - DOMAIN-SUFFIX,mifosy.com
+  - DOMAIN-SUFFIX,mikus.ink
   - DOMAIN-SUFFIX,minekuai.com
   - DOMAIN-SUFFIX,minor-api-os.hoyoverse.com
   - DOMAIN-SUFFIX,miraiemby.com
   - DOMAIN-SUFFIX,mixly.org
   - DOMAIN-SUFFIX,mobai.sbs
+  - DOMAIN-SUFFIX,mobbananagame.com
   - DOMAIN-SUFFIX,mochadj.com
   - DOMAIN-SUFFIX,moctory.com
   - DOMAIN-SUFFIX,modaiyun.com
@@ -977,6 +982,7 @@ payload:
   - DOMAIN-SUFFIX,suyur.com
   - DOMAIN-SUFFIX,svyun.com
   - DOMAIN-SUFFIX,sxdidc.com
+  - DOMAIN-SUFFIX,sxjd.ink
   - DOMAIN-SUFFIX,sxjiabeide.com
   - DOMAIN-SUFFIX,sxjkj22.top
   - DOMAIN-SUFFIX,sxlljm.com
@@ -1193,6 +1199,7 @@ payload:
   - DOMAIN-SUFFIX,yixc.com
   - DOMAIN-SUFFIX,yixlab.com
   - DOMAIN-SUFFIX,yldw.net
+  - DOMAIN-SUFFIX,ymm56-cdn.com
   - DOMAIN-SUFFIX,ymwfy.com
   - DOMAIN-SUFFIX,ymzec.com
   - DOMAIN-SUFFIX,ynsj001.com
