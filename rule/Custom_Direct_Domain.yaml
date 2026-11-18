@@ -1,7 +1,7 @@
 # Generated from rule/Custom_Direct.list
 # REPO: https://github.com/Aethersailor/Custom_OpenClash_Rules
 # SOURCE: https://github.com/Aethersailor/Custom_OpenClash_Rules/blob/main/rule/Custom_Direct.list
-# TOTAL: 1251
+# TOTAL: 1258
 
 payload:
   - '+.00333118.com'
@@ -472,6 +472,7 @@ payload:
   - '+.gxcould.com'
   - '+.gxnnjidingkeji.top'
   - '+.gxnnxsqy.top'
+  - '+.gxqmeiwujun.com'
   - '+.gxrke1715.com'
   - '+.gzjkoa.com'
   - '+.gzybao.com'
@@ -593,6 +594,7 @@ payload:
   - '+.ipshu.com'
   - '+.iq.com'
   - '+.iquantumad.com'
+  - '+.isbestgame.com'
   - '+.istoreos.com'
   - '+.itptg.com'
   - '+.itui.cc'
@@ -730,6 +732,7 @@ payload:
   - '+.metrix.bar'
   - '+.mfdqsc.com'
   - '+.mfosunhani.com'
+  - '+.mfpt8g.com'
   - '+.miaona.app'
   - '+.miaotixing.com'
   - '+.micu.hk'
@@ -739,11 +742,13 @@ payload:
   - '+.mifeng.plus'
   - '+.mifon.com'
   - '+.mifosy.com'
+  - '+.mikus.ink'
   - '+.minekuai.com'
   - '+.minor-api-os.hoyoverse.com'
   - '+.miraiemby.com'
   - '+.mixly.org'
   - '+.mobai.sbs'
+  - '+.mobbananagame.com'
   - '+.mochadj.com'
   - '+.moctory.com'
   - '+.modaiyun.com'
@@ -974,6 +979,7 @@ payload:
   - '+.suyur.com'
   - '+.svyun.com'
   - '+.sxdidc.com'
+  - '+.sxjd.ink'
   - '+.sxjiabeide.com'
   - '+.sxjkj22.top'
   - '+.sxlljm.com'
@@ -1190,6 +1196,7 @@ payload:
   - '+.yixc.com'
   - '+.yixlab.com'
   - '+.yldw.net'
+  - '+.ymm56-cdn.com'
   - '+.ymwfy.com'
   - '+.ymzec.com'
   - '+.ynsj001.com'
