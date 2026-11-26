@@ -1,7 +1,7 @@
 # Generated from rule/Custom_Direct.list
 # REPO: https://github.com/Aethersailor/Custom_OpenClash_Rules
 # SOURCE: https://github.com/Aethersailor/Custom_OpenClash_Rules/blob/main/rule/Custom_Direct.list
-# TOTAL: 1319
+# TOTAL: 1322
 
 payload:
   - DOMAIN-KEYWORD,m-team
@@ -880,6 +880,7 @@ payload:
   - DOMAIN-SUFFIX,ppqrrs.com
   - DOMAIN-SUFFIX,ppt28.com
   - DOMAIN-SUFFIX,privateapi.xyz
+  - DOMAIN-SUFFIX,proqianwen.com
   - DOMAIN-SUFFIX,psf0404.shop
   - DOMAIN-SUFFIX,pthqzpc100.com
   - DOMAIN-SUFFIX,ptlgs.org
@@ -1095,6 +1096,7 @@ payload:
   - DOMAIN-SUFFIX,ugnas.cloud
   - DOMAIN-SUFFIX,ulife.group
   - DOMAIN-SUFFIX,uploadlog.com
+  - DOMAIN-SUFFIX,upoem1.com
   - DOMAIN-SUFFIX,us.ci
   - DOMAIN-SUFFIX,v-koolsh.com
   - DOMAIN-SUFFIX,vanjee.net
@@ -1228,6 +1230,7 @@ payload:
   - DOMAIN-SUFFIX,ydxian.xyz
   - DOMAIN-SUFFIX,yeguodj.com
   - DOMAIN-SUFFIX,ygdj17.com
+  - DOMAIN-SUFFIX,yh29798.com
   - DOMAIN-SUFFIX,yhxjkj.top
   - DOMAIN-SUFFIX,yi-ll.com
   - DOMAIN-SUFFIX,yibanbianji.com
